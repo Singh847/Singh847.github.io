@@ -207,6 +207,17 @@
   .cert-list li:last-child{border-bottom:none}
   .cert-list li::before{content:"✓";position:absolute;left:0;color:var(--acc);font-family:var(--mono);font-weight:700}
 
+  /* ---------- beyond / hobbies ---------- */
+  .beyond-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:820px){.beyond-grid{grid-template-columns:1fr}}
+  .hob{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:24px}
+  .hob h3{font-family:var(--mono);font-size:12px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.1em;margin-bottom:18px;display:flex;align-items:center;gap:9px}
+  .hob-list{display:flex;flex-wrap:wrap;gap:9px}
+  .hob-item{font-size:14px;color:var(--ink);border:1px solid var(--line-bright);border-radius:8px;padding:9px 14px;background:var(--bg);display:flex;flex-direction:column;gap:2px;transition:border-color .18s}
+  .hob-item:hover{border-color:var(--acc)}
+  .hob-item .sub{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
+  .hob-note{color:var(--ink-dim);font-size:14px;margin-top:16px}
+
   /* ---------- contact ---------- */
   .contact{border:1px solid var(--line);border-radius:14px;background:linear-gradient(135deg,var(--panel-2),var(--panel));padding:48px 40px;text-align:center;position:relative;overflow:hidden}
   .contact::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(74,222,128,.08),transparent 60%);pointer-events:none}
@@ -241,6 +252,7 @@
       <a href="#projects">portfolio</a>
       <a href="#skills">skills</a>
       <a href="#experience">experience</a>
+      <a href="#beyond">beyond</a>
       <a href="#contact">contact</a>
     </nav>
     <div class="clock" id="clock">--:--:-- UTC</div>
@@ -250,7 +262,7 @@
 <!-- hero -->
 <header class="hero">
   <div class="wrap">
-    <div class="eyebrow reveal">Security Operations · Sheffield, UK</div>
+    <div class="eyebrow reveal">Cybersecurity Engineer · Sheffield, UK</div>
     <h1 class="reveal">Sumeer Singh Rana
       <span class="role">SOC Analyst · Security Engineer · MSc Computing</span>
     </h1>
@@ -269,8 +281,8 @@
       <div class="console-grid">
         <div class="cell"><div class="k">Status</div><div class="v"><em>Open</em></div><div class="s">Available immediately</div></div>
         <div class="cell"><div class="k">Focus</div><div class="v">SOC + IR</div><div class="s">Detection engineering</div></div>
-        <div class="cell"><div class="k">Tools built</div><div class="v">7+</div><div class="s">Working & documented</div></div>
-        <div class="cell"><div class="k">Education</div><div class="v">MSc</div><div class="s">Computing, 2026</div></div>
+        <div class="cell"><div class="k">Tools built</div><div class="v">9+</div><div class="s">Working & documented</div></div>
+        <div class="cell"><div class="k">Work rights</div><div class="v"><em>UK</em></div><div class="s">Graduate visa</div></div>
       </div>
     </div>
   </div>
@@ -285,7 +297,8 @@
         <h2>Detection-first, hands-on defence.</h2>
         <p style="margin-top:20px"><strong>MSc Computing graduate</strong> (Sheffield Hallam University, 2026 — Secure Distributed Systems & Multi-Cloud Architecture) and B.Tech Electronics & Communication Engineering graduate, with hands-on experience across SOC monitoring, threat detection, incident triage, IT support, and cloud security.</p>
         <p>Every project in this portfolio is a working tool that solves a real SOC problem — built from the ground up and fully documented. Not demos: the same lookups, correlations, and reports an analyst runs on the job, automated end to end.</p>
-        <p>Background spans a <strong>Cyber Security Engineer</strong> rotation at Redynox, vulnerability-assessment internships, and IT support at Tech Mahindra — plus real operational leadership from floor and fulfilment roles.</p>
+        <p>Background spans a <strong>Cyber Security Engineer</strong> rotation at Redynox, security-tooling internships at CodeAlpha and Future Interns, and a full-time SOC role at Emandi Exim — plus real operational leadership from a floor-lead role in Sheffield.</p>
+        <p>Based in Sheffield on a <strong>UK Graduate visa with full work authorisation</strong>, and available to start immediately.</p>
       </div>
       <div class="focus-card reveal">
         <h3>// Areas of focus</h3>
@@ -310,6 +323,21 @@
 
       <article class="proj feat reveal">
         <div class="proj-top">
+          <div class="proj-name"><span class="ico">🛡️</span> Mini-SOC-in-a-Box</div>
+          <span class="metric">100% recall/precision</span>
+        </div>
+        <p class="proj-desc">A from-scratch SOC detection pipeline. Detects a full kill-chain intrusion using detection-as-code (YAML → Sigma), maps every alert to MITRE ATT&CK, and correlates them into a single incident — measured at 100% recall and precision with zero false positives.</p>
+        <ul class="proj-feats">
+          <li><b>Detection-as-code</b> — rules written in YAML, compiled to Sigma, version-controlled and tested</li>
+          <li><b>Full kill-chain detection</b> — every alert mapped to a specific MITRE ATT&CK technique</li>
+          <li><b>Incident correlation</b> — related alerts grouped into one coherent incident with pytest coverage</li>
+        </ul>
+        <div class="stack"><span class="chip">Python</span><span class="chip">Sigma</span><span class="chip">MITRE ATT&CK</span><span class="chip">pytest</span></div>
+        <a class="proj-link" href="https://github.com/Singh847/mini-soc" target="_blank" rel="noopener">github.com/Singh847/mini-soc <span class="arrow">↗</span></a>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj-top">
           <div class="proj-name"><span class="ico">🕵️</span> OSINT Investigator v2</div>
           <span class="metric">50 IOCs / batch</span>
         </div>
@@ -317,7 +345,6 @@
         <ul class="proj-feats">
           <li><b>MITRE ATT&CK auto-tagging</b> — every finding mapped to a specific technique with a plain-English reason</li>
           <li><b>Campaign correlation engine</b> — clusters related IOCs by shared ASN, registrar, nameserver, or registration week</li>
-          <li><b>Investigation timeline</b> — detects rapid weaponisation (&lt; 14 days) from registration to first malicious hit</li>
           <li><b>Ticket-ready PDF reports</b> with risk indicators and recommendations</li>
         </ul>
         <div class="stack"><span class="chip">Python</span><span class="chip">Flask</span><span class="chip">MITRE ATT&CK</span><span class="chip">URLhaus</span><span class="chip">AbuseIPDB</span><span class="chip">crt.sh</span></div>
@@ -385,6 +412,16 @@
         <p class="proj-desc">REST API implementing JWT authentication, token blacklisting, three-tier RBAC (admin / operator / viewer), and full audit logging — core IAM and least-privilege principles applied end to end.</p>
         <div class="stack"><span class="chip">Python</span><span class="chip">Django REST</span><span class="chip">JWT</span><span class="chip">RBAC</span></div>
         <a class="proj-link" href="https://github.com/Singh847/asset_security_api_portfolio" target="_blank" rel="noopener">github.com/Singh847/asset_security_api_portfolio <span class="arrow">↗</span></a>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj-top">
+          <div class="proj-name"><span class="ico">🔎</span> IDS/Firewall Evasion Scanner</div>
+          <span class="metric amber">CAMP mentorship</span>
+        </div>
+        <p class="proj-desc">Built for the CAMP Cybersecurity Mentorship Program. Automates all HPING3 scan types, classifies each port as OPEN / CLOSED / FILTERED / EVADED, and auto-generates a PDF report.</p>
+        <div class="stack"><span class="chip">Python</span><span class="chip">HPING3</span><span class="chip">Kali Linux</span><span class="chip">Scapy</span></div>
+        <a class="proj-link" href="https://github.com/Singh847/hping3-report-generator" target="_blank" rel="noopener">github.com/Singh847/hping3-report-generator <span class="arrow">↗</span></a>
       </article>
 
       <article class="proj reveal">
@@ -489,13 +526,43 @@
   </div>
 </section>
 
+<!-- beyond / hobbies -->
+<section id="beyond">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="idx">06</span> Beyond Work</div>
+    <h2 class="reveal">Off the clock.</h2>
+    <p class="sec-intro reveal">The reading and games that keep me curious, patient, and sharp under pressure.</p>
+    <div class="beyond-grid">
+      <div class="hob reveal">
+        <h3>📚 Reading</h3>
+        <div class="hob-list">
+          <div class="hob-item">A Little Life<span class="sub">Hanya Yanagihara</span></div>
+          <div class="hob-item">Atomic Habits<span class="sub">James Clear</span></div>
+          <div class="hob-item">Ikigai<span class="sub">García &amp; Miralles</span></div>
+          <div class="hob-item">Godaan<span class="sub">Munshi Premchand</span></div>
+        </div>
+        <p class="hob-note">A mix of fiction and non-fiction — from character-driven novels to habit-building and finding purpose in the everyday.</p>
+      </div>
+      <div class="hob reveal">
+        <h3>🎮 Games &amp; Sport</h3>
+        <div class="hob-list">
+          <div class="hob-item">Clash of Clans<span class="sub">strategy</span></div>
+          <div class="hob-item">League of Legends<span class="sub">team tactics</span></div>
+          <div class="hob-item">Volleyball<span class="sub">on the court</span></div>
+        </div>
+        <p class="hob-note">Strategy games and team sport that reward planning, coordination, and staying calm when the pressure's on — the same instincts I bring to a SOC.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- contact -->
 <section id="contact">
   <div class="wrap">
     <div class="contact reveal">
       <div class="avail"><span class="dot"></span>Open to work — available immediately</div>
       <h2>Let's talk security.</h2>
-      <p>Looking for SOC Analyst, Cybersecurity Analyst, Security Engineer, or IT Support Engineer roles in the UK. Sheffield / Leeds · onsite · remote · 24/7 shifts welcome.</p>
+      <p>Looking for SOC Analyst, Cybersecurity Analyst, Security Engineer, or IT Support Engineer roles in the UK. Sheffield / Leeds · onsite · remote · 24/7 shifts welcome. On a UK Graduate visa with full work authorisation — available to start immediately.</p>
       <div class="cta-row">
         <a class="btn primary" href="mailto:sumeier791@gmail.com">sumeier791@gmail.com</a>
         <a class="btn" href="https://linkedin.com/in/sumeer-singhrana" target="_blank" rel="noopener">LinkedIn</a>
